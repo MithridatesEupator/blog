@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 2% 2%;
+    position: relative;
+}
+
+p {
+    font-family: "roboto";
+}
+
+h1 {
+    font-family: "roboto";
+    text-align: center;
+    font-weight: 100;
+}
+
+.line {
+    background-color: black;
+    height: 2px;
+}
