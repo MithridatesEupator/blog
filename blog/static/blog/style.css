@@ -21,3 +21,23 @@ h1 {
     background-color: black;
     height: 2px;
 }
+
+.button {
+    color: black;
+    font-family: "roboto";
+    font-size: 12px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 7px 20px;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+    transition-duration: .2s;
+}
+
+.post {
+    background-color: azure;
+}

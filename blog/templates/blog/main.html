@@ -16,7 +16,20 @@
         Blog Page
     </h1>
     <div class="line"></div>
-    <p>
-        12312
-    </p>
+    {% block content %}            
+        {% for entry in object_list %}
+            <div class="post">
+            <p>
+                {{ entry.title }} on {{ entry.date.date }}
+            </p>
+            <p>
+                {{ entry.body }}
+            </p>
+            </div>
+        {% endfor %}
+    {% endblock %}
+    
+    <button class="button" onclick="myFunction()">
+        Button
+    </button>
 </div>
