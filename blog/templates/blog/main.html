@@ -8,28 +8,45 @@
     </style>
     
     <link href="{% static 'blog/style.css'%}" rel="stylesheet">
-    
+    <link rel="shortcut icon" type="image/png" href="{% static 'blog/home.png'%}"/>
 </head>
 
 <div class="container">
-    <h1>
-        Blog Page
-    </h1>
-    <div class="line"></div>
+    <div class="topBar">
+        <h1>
+            My Blog
+        </h1>
+    </div>
+    <br>
+    <a href = "{% url 'blog:add_comment' slug=entry.slug %}"> Leave A Comment </a>
     {% block content %}            
         {% for entry in object_list %}
             <div class="post">
-            <p>
-                {{ entry.title }} on {{ entry.date.date }}
-            </p>
-            <p>
+                <div class="postHead"> 
+                    <p2>
+                        {{ entry.title|title }} 
+                    </p2>
+                    <br>
+                    <br>
+                    <p1>
+                        Published on {{ entry.date.date }}    
+                    </p1>
+                    <br>
+                </div>
+                <p>
                 {{ entry.body }}
-            </p>
+                </p>
             </div>
         {% endfor %}
     {% endblock %}
+    <div class="containerBtn">
+        <button class="button" onclick="myFunction()">
+            Add Post
+        </button>
+    </div>
+    <div class="transparentBar"></div>
+    <div class="bottomBar">
+        <p> Created with Django&#8482; </p>
+    </div>
     
-    <button class="button" onclick="myFunction()">
-        Button
-    </button>
 </div>

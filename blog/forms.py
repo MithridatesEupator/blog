@@ -1,5 +1,7 @@
 from django import forms
+from .models import Entry
 
-class NameForm(forms.Form):
-    title_text = models.CharField(max_length=140)
-    body_text = forms.TextField(label='Body Text')
+class EntryForm(forms.ModelForm):
+    class Meta:
+        model = Entry
+        fields = ("title", "body")

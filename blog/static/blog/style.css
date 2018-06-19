@@ -1,43 +1,119 @@
 body {
     margin: 0;
+    background-color: #263238;
 }
 
 .container {
-    margin: 2% 2%;
-    position: relative;
+    margin: 0%;
 }
 
 p {
     font-family: "roboto";
+    margin: 10px 10px;
+    z-index: 100;
+}
+
+p1 {
+    font-family: "roboto";
+    color: whitesmoke;
+    position: absolute;
+    margin: .1% .1%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-0%);
+}
+
+p2 {
+    font-size: 20px;
+    font-family: "roboto";
+    color: whitesmoke;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-0%);
 }
 
 h1 {
+    display:inline-block
+    position: absolute;
+    color: #d1d1d1;
     font-family: "roboto";
     text-align: center;
     font-weight: 100;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
 }
 
 .line {
     background-color: black;
     height: 2px;
+    margin: 0px 5%;
 }
 
 .button {
-    color: black;
-    font-family: "roboto";
-    font-size: 12px;
     background-color: transparent;
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 7px 20px;
+    color: #45ada8;
+    font-family: "roboto";
+    font-size: 20px;
+    border: 2px solid #45ada8;
+    border-radius: 15px;
+    padding: 5px 25px;
 }
 
 .button:hover {
-    background-color: black;
-    color: white;
-    transition-duration: .2s;
+    color: #2a363b;
+    background-color: #45ada8;
+    border: 2px solid #45ada8;
+    transition-duration: .3s;
 }
 
 .post {
-    background-color: azure;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 0px 0px;
+    opacity: .8;
+    margin: 2% 5%;
+}
+
+.postHead {
+    background-color: black;
+    height: 10.4%;
+}
+
+.bottomBar {
+    text-align: center;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+}
+
+.transparentBar {
+    background-color: black;
+    height: 6%;
+    width: 100%;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    opacity: .8
+}
+
+img {
+    display:inline-block
+}
+
+.containerBtn {
+    text-align: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20%;
+}
+
+.topBar {
+    background-color: #37474f;
+    height: 20%;
+    position: relative;
 }
