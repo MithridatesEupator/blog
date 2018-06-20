@@ -12,33 +12,45 @@
 </head>
 
 <div class="container">
-    <div class="topBar">
-        <h1>
-            My Blog
-        </h1>
-    </div>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#news">Contact</a>
+    </div> 
     <br>
-    <a href = "{% url 'blog:add_comment' slug=entry.slug %}"> Leave A Comment </a>
-    {% block content %}            
-        {% for entry in object_list %}
-            <div class="post">
-                <div class="postHead"> 
-                    <p2>
-                        {{ entry.title|title }} 
-                    </p2>
-                    <br>
-                    <br>
-                    <p1>
-                        Published on {{ entry.date.date }}    
-                    </p1>
-                    <br>
-                </div>
-                <p>
-                {{ entry.body }}
-                </p>
-            </div>
-        {% endfor %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% block content %}
+        {% if latest_question_list %}
+        <div class="block">
+        <ul>
+            {% for question in latest_question_list %}
+                <li>
+                
+                    <a href="{% url 'detail' question.id %}">
+                        {{ question.question_text }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            <p>
+                No polls are available.
+            </p>
+        {% endif %}
     {% endblock %}
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="containerBtn">
         <button class="button" onclick="myFunction()">
             Add Post

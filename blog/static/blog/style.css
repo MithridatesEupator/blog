@@ -9,17 +9,9 @@ body {
 
 p {
     font-family: "roboto";
+    color: whitesmoke;
     margin: 10px 10px;
     z-index: 100;
-}
-
-p1 {
-    font-family: "roboto";
-    color: whitesmoke;
-    position: absolute;
-    margin: .1% .1%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-0%);
 }
 
 p2 {
@@ -32,17 +24,29 @@ p2 {
 }
 
 h1 {
-    display:inline-block
-    position: absolute;
     color: #d1d1d1;
     font-family: "roboto";
-    text-align: center;
     font-weight: 100;
     font-size: 30px;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 200;
+    transform: translateX(-50%) translateY(-0%);
+    position: absolute;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 1em; 
+  text-indent: -.7em;
+}
+
+li::before {
+  content: "• ";
+  color: whitesmoke; /* or whatever color you prefer */
 }
 
 .line {
@@ -114,6 +118,84 @@ img {
 
 .topBar {
     background-color: #37474f;
-    height: 20%;
-    position: relative;
+    height: 13%;
+    width: 100%;
+    position: absolute;
+}
+.navbar {
+    position: fixed;
+    overflow: hidden;
+    background-color: #37474f;
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 200;
+    width: 100%;
+}
+
+.navbar a {
+    font-family: "roboto";
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.block a {
+    text-decoration: none;
+    font-family: "roboto";
+    color: whitesmoke;
+}
+
+.block a:hover {
+    color: aqua;
+    transition-duration: .5s;
+}
+
+.dropdown {
+    font-family: "roboto";
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-family: "roboto";
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
