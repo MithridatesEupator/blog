@@ -3,14 +3,13 @@
     <title>
         Blog Page
     </title>
-    
     <style>
     </style>
-    
     <link href="{% static 'blog/style.css'%}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{% static 'blog/home.png'%}"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 </head>
-
 <div class="container">
     <div class="navbar">
         <a href="#home">Home</a>
@@ -28,37 +27,36 @@
     <br>
     <br>
     {% block content %}
-        {% if latest_question_list %}
-        <div class="block">
-        <ul>
-            {% for question in latest_question_list %}
-                <li>
-                
-                    <a href="{% url 'detail' question.id %}">
-                        {{ question.question_text }}
-                    </a>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-        {% else %}
-            <p>
-                No polls are available.
+        {% for post in blog_post_list %}
+            <p style="text-align: center; "> 
+                {{ post.title }} published on {{ post.published_date.date }}
             </p>
-        {% endif %}
+            <p> 
+                {{ post.post_text }} 
+            </p>
+        {% endfor %}
     {% endblock %}
     <br>
     <br>
     <br>
     <br>
     <div class="containerBtn">
-        <button class="button" onclick="myFunction()">
-            Add Post
-        </button>
+        <a href="{% url 'make_post' %}" class="button">
+            Add a Post
+        </a>
     </div>
+    <form action="{% url 'delete_post' %}" method="post">                                                             
+        {% csrf_token %}
+        <label for="content"></label>
+        <textarea  rows="1" cols="50" name="delete_id" id="delete_id"> </textarea>
+        <input type="submit" class="button"/>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="transparentBar"></div>
     <div class="bottomBar">
-        <p> Created with Django&#8482; </p>
+        <a href="/admin"> Created with Django&#8482; </a>
     </div>
-    
 </div>
