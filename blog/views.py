@@ -5,12 +5,15 @@ from django.views import generic
 from .models import Post
 from datetime import datetime
 from django.utils import timezone
+from .forms import make_post_form
+from django import forms
 
 # Create your views here.
 def index(request):
     blog_post_list = Post.objects.all()[:5]
+    form_post = make_post_form()
     context = {
-        "blog_post_list": blog_post_list,
+        "blog_post_list": blog_post_list, "form_post": form_post
     }
     return render(request, 'blog/main.html', context)
 
@@ -23,14 +26,17 @@ def details(request, id):
     return render(request, 'blog/detail.html', context)
 
 def make_post(request):
-    #return render(request, 'blog/upload_post.html')
     if request.method == 'GET':
         return render(request, 'blog/upload_post.html', {})
     elif request.method == 'POST':
-        post = Post(title=request.POST['title'], post_text=request.POST['content'], published_date=timezone.now())
-        post.save()
+        form_post = make_post_form(data=request.POST)
+        if form_post.is_valid():
+            title_pass=form_post.cleaned_data['title']
+            post_text_pass=form_post.cleaned_data['post_text']
+            print(post_text_pass)
+            post = Post(title=title_pass, post_text=post_text_pass, published_date=timezone.now())
+            post.save()
         return HttpResponseRedirect(reverse('index'))
-        #return render(request, 'blog/upload_post.html', {})
         
 def delete_post(request):
     if request.method == 'GET':
