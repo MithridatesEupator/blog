@@ -1,15 +1,15 @@
 body {
     margin: 0;
-    background-color: #f1f1f1;
 }
 
 .container {
     margin: 0%;
+    background-color: #588eb1;
 }
 
 p {
     font-family: "roboto";
-    color: #111;
+    color: #333;
     margin: 10px 10px;
     z-index: 100;
 }
@@ -17,7 +17,9 @@ p {
 p2 {
     font-size: 16px;
     font-family: "roboto";
-    color: whitesmoke;
+    color: #333;
+    display: inline-block;
+    margin-left: calc(2% + 10px);
 }
 
 p3 {
@@ -65,33 +67,45 @@ li::before {
 
 .button {
     background-color: transparent;
-    color: #45ada8;
+    color: #333;
     font-family: "roboto";
     font-size: 20px;
-    border: 2px solid #45ada8;
+    font-weight: 500;
+    border: 3px solid #333;
     border-radius: 32px;
     padding: 5px 25px;
+    
 }
 
 .button:hover {
-    color: #f1f1f1;
-    background-color: #45ada8;
-    border: 2px solid #45ada8;
+    color: #588eb1;
+    background-color: #333;
     transition-duration: .3s;
 }
 
 .post {
-    background-color: transparent;
-    border: 2px solid black;
-    border-radius: 6px;
+    background-color: #7eb0d0;
+    border-radius: 4px;
     padding: 0px 0px;
     margin: 2% 5%;
+    padding: 0% 0% 1% 0%;
+    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1);
 }
 
 .postHead {
     padding: 20px 0;
-    background-color: black;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #d1d1d1;
     text-align: center;
+   
+
+}
+
+.postContainer {
+    display: inline-block;
+    margin: 4% 0%;
+    
 }
 
 .bottomBar {
@@ -126,7 +140,6 @@ img {
     height: 13%;
     width: 100%;
     position: absolute;
-    
 }
 
 .head {
@@ -156,6 +169,7 @@ textarea {
 }
 
 .customTextarea {
+    font-family: "roboto";
     height: 1em;
     width: 1em;
 }
@@ -171,30 +185,52 @@ a {
 
 .navbar span {
     display: inline-block;
-    padding: 30px 20px 26px 20px;
-    margin-bottom: 4px;
+    padding: 14px 20px;
 }
 
 .navbar span:hover {
-    border-bottom: 4px solid #f1f1f1;
-    margin-bottom: 0px;
+    background-color: #d77347;
     color: #f1f1f1;
+    transition-duration: .4s;
 }
 
 .navbar span:active {
-    border-bottom: 4px solid #f1f1f1;
-    margin-bottom: 0px;
     color: #f1f1f1;
 }
 
 
 .navbar {
-    background-color: #364e68;
-    padding: 0px 0px;
+    background-color: #ec8558;
     position: fixed;
     width: 100%;
     z-index: 200;
-    box-shadow: 0px 1px 10px #111;
+    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1);
+}
+.accordionButton {
+    color: whitesmoke;
+    border: 0px solid transparent;
+    border-radius: 16px;
+    display: inline-block;
+    float: right;
+    padding: 4px 8px;
+    margin-right: 2%;
+    background-color: #777;
 }
 
 
+.accordionButton:hover {
+    background-color: #aaa;
+    transition-duration: .5s;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+    margin-bottom: -12px;
+    margin-right: 5px;
+    margin-left: 15px;
+    background-image: url(computer.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    
+}

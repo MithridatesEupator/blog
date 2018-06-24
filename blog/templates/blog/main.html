@@ -1,91 +1,71 @@
 {% load static %}
 <head>
     <title>
-        Blog Page
+        Home of Constantius
     </title>
     <style>
     </style>
     <link href="{% static 'blog/style.css'%}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="{% static 'blog/home.png'%}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'blog/computer.png'%}"/>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="icon">
+            </div>
+            <a href="#home">
+                <span> 
+                    Home
+                </span>
+            </a>   
+            <a href="#news">
+                <span> 
+                    News
+                </span>
+            </a>
+            <a href="#download">
+                <span> 
+                    Download
+                </span>
+            </a>
+        </div> 
+        <div class="postContainer">
+        </div>
+        {% block content %}
+            {% for post in blog_post_list %}
+                <div class="post">
+                    <div class="postHead"> 
+                        <p2> 
+                            {{ post.title }} published on {{ post.published_date.date }}
+                        </p2>
+                        <button class="accordionButton" id="accordion"> 
+                            +
+                        </button>
+                    </div>
+                    <p> 
+                        {{ post.post_text }} 
+                    </p>
+                </div>
+            {% endfor %}
+        {% endblock %}
+        <form action="{% url 'make_post' %}" method="post">                                                             
+            {% csrf_token %}
+            {{ form_post.as_p }}
+            <input type="submit" class="button"/> 
+        </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="transparentBar"></div>
+        <div class="bottomBar">
+            <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<div class="container">
-    <div class="navbar">
-        <a href="#home">
-            <span> 
-                Home
-            </span>
-        </a>   
-        <a href="#news">
-            <span> 
-                News
-            </span>
-        </a>
-        <a href="#download">
-            <span> 
-                Download
-            </span>
-        </a>
-    </div> 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    {% block content %}
-        {% for post in blog_post_list %}
-            <div class="post">
-                <div class="postHead">
-                    <p2> 
-                        {{ post.title }} published on {{ post.published_date.date }}
-                    </p2>
-                </div>
-                <p> 
-                    {{ post.post_text }} 
-                </p>
-            </div>
-        {% endfor %}
-    {% endblock %}
-    
-    <!--
-    <div class="containerBtn">
-        <a href="{% url 'make_post' %}" class="button">
-            Add a Post
-        </a>
-    </div>
-    -->
-    <form action="{% url 'make_post' %}" method="post">                                                             
-        {% csrf_token %}
-        {{ form_post.as_p }}
-        <!--
-        <label for="content"></label>
-        <textarea  rows="1" cols="50" name="title" id="title"> </textarea>
-        <textarea  rows="8" cols="50" name="content" id="content"> </textarea>
-        --> 
-        <input type="submit" class="button"/> 
-    </form>
-    <!--
-    <form action="{% url 'delete_post' %}" method="post">                                                             
-        {% csrf_token %}
-        <label for="content"></label>
-        <textarea  rows="1" cols="50" name="delete_id" id="delete_id"> </textarea>
-        <input type="submit" class="button"/>
-    </form>
-    -->
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="transparentBar"></div>
-    <div class="bottomBar">
-        <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
-    </div>
-</div>
+    <script src="{% static 'blog/main.js' %}"></script>
+</body>
