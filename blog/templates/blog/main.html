@@ -5,11 +5,23 @@
     </title>
     <style>
     </style>
-    <link href="{% static 'blog/style.css'%}" rel="stylesheet">
+    <link href="{% static 'blog/style.css'%}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/png" href="{% static 'blog/computer.png'%}"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <div class="topImg">
+        <div class="boxImg">
+            <div class="hidden">
+                <p4>
+                    Welcome!
+                </p4>
+                <p5>
+                    influenced by flat design
+                </p5>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="navbar">
             <div class="icon">
@@ -29,7 +41,9 @@
                     Download
                 </span>
             </a>
-        </div> 
+        </div>
+        <div class="navHolder"> 
+        </div>
         <div class="postContainer">
         </div>
         {% block content %}
@@ -39,9 +53,11 @@
                         <p2> 
                             {{ post.title }} published on {{ post.published_date.date }}
                         </p2>
-                        <button class="accordionButton" id="accordion"> 
-                            +
-                        </button>
+                        <div class="idReg">
+                            {{ post.id }}
+                        </div>
+                        <a href="{% url 'delete_post' pk=post.id %}" class="deleteButton" id="delete_post">       
+                        </a>
                     </div>
                     <p> 
                         {{ post.post_text }} 
@@ -49,11 +65,18 @@
                 </div>
             {% endfor %}
         {% endblock %}
-        <form action="{% url 'make_post' %}" method="post">                                                             
+        <div class="commentBox">
+            <button class="accordion"> Comment
+            </button>
+            <div class="accordionContent">
+                <form action="{% url 'make_post' %}" method="post">         
             {% csrf_token %}
             {{ form_post.as_p }}
             <input type="submit" class="button"/> 
         </form>
+            </div>
+        </div>
+        
         <br>
         <br>
         <br>
@@ -68,4 +91,23 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{% static 'blog/main.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $('.boxImg').fadeIn(1000);
+        $('.hidden').delay(1000).fadeIn(3000);
+    });
+    $(window).scroll( function() {
+        var windowDivHeight = $('.topImg').height();
+        console.log(windowDivHeight);
+        if ($(this).scrollTop() > windowDivHeight){  
+            console.log("we1321");
+            $('.navbar').addClass("fixed");
+            $('.navHolder').addClass("space");
+        }
+        else{
+            $('.navbar').removeClass("fixed");
+            $('.navHolder').removeClass("space");
+        }
+    });   
+    </script>
 </body>

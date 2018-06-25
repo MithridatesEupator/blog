@@ -5,8 +5,9 @@ from django.views import generic
 from .models import Post
 from datetime import datetime
 from django.utils import timezone
-from .forms import make_post_form
+from .forms import make_post_form, delete_post_form
 from django import forms
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -38,11 +39,14 @@ def make_post(request):
             post.save()
         return HttpResponseRedirect(reverse('index'))
         
-def delete_post(request):
+def delete_post(request, pk):
+    template = 'blog/delete_post.html'
+    post = get_object_or_404(Post, pk=pk)
+    #need to replace GET with POST; not very safe
     if request.method == 'GET':
-        return HttpResponseRedirect(reverse('index'))
-    elif request.method == 'POST':
-        delete_id = int(request.POST['delete_id'])
-        post = SomeModel.objects.get(id=delete_id)
-        post.delete()
-        return HttpResponseRedirect(reverse('index'))
+        form = delete_post_form(request.POST, instance=post)
+        if form.is_valid():
+            post.delete()
+    else: 
+        form = delete_post_form(instance=post)
+    return HttpResponseRedirect(reverse('index'))

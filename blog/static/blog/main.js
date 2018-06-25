@@ -1,4 +1,20 @@
-var btn = document.getElementById("accordion");
+var accordion = document.getElementsByClassName("accordion");
+
+for (var i = 0; i < accordion.length; i++) {
+    accordion[i].onclick = function () {
+        this.classList.toggle('status-open');
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;   
+        }
+        else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    }
+}
+
+
+/*var btn = document.getElementById("accordion");
 
 btn.addEventListener("click", function() {
     var myRequest = new XMLHttpRequest();
@@ -15,3 +31,4 @@ function buttonFunction() {
     document.getElementById('accordion').innerText = '';
 }
 
+*/

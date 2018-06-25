@@ -1,14 +1,25 @@
 body {
     margin: 0;
+    position: relative;
+    background-color: #588eb1;
+}
+
+.topImg {
+    position: relative;
+    background-color: #d1d1d1;
+    height: 50%;
+    z-index: -100;
+    text-align: center;
 }
 
 .container {
+    position: relative;
     margin: 0%;
     background-color: #588eb1;
 }
 
 p {
-    font-family: "roboto";
+    font-family: "Raleway", sans-serif;
     color: #333;
     margin: 10px 10px;
     z-index: 100;
@@ -16,22 +27,45 @@ p {
 
 p2 {
     font-size: 16px;
-    font-family: "roboto";
+    font-family: "Raleway", sans-serif;
     color: #333;
     display: inline-block;
-    margin-left: calc(2% + 10px);
+    margin-left: calc(2% + 12px);
 }
 
 p3 {
-    font-family: "roboto";
+    font-family: "Raleway", sans-serif;
     color: whitesmoke;
     margin: 10px 10px;
     z-index: 100;
 }
 
+p4 {
+    display: inline-block;
+    margin-right: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 420%;
+    top: 13.5%;
+    color: #444;
+    z-index: 100;
+    position: fixed;
+    transform: translate(-50%);
+}
+
+p5 {
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    font-size: 170%;
+    top: 26%;
+    color: #444;
+    z-index: 100;
+    position: fixed;
+    transform: translate(-50%);
+}
+
 h1 {
     color: #111;
-    font-family: "roboto";
+    font-family: "Raleway", sans-serif;
     font-weight: 100;
     font-size: 30px;
     left: 50%;
@@ -41,22 +75,6 @@ h1 {
 
 .whiteFont {
     color: whitesmoke;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  padding-left: 1em; 
-  text-indent: -.7em;
-}
-
-li::before {
-  content: "• ";
-  color: whitesmoke; /* or whatever color you prefer */
 }
 
 .line {
@@ -74,7 +92,8 @@ li::before {
     border: 3px solid #333;
     border-radius: 32px;
     padding: 5px 25px;
-    
+    cursor: pointer;
+    outline:0;
 }
 
 .button:hover {
@@ -98,8 +117,6 @@ li::before {
     border-top-right-radius: 4px;
     background-color: #d1d1d1;
     text-align: center;
-   
-
 }
 
 .postContainer {
@@ -157,11 +174,11 @@ textarea {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 3%;
-    width: 40%;
+    width: 80%;
     outline: none;
     border: 2px solid #b9c3cb; 
     background-color: #eef9fd;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .text_body {
@@ -169,16 +186,15 @@ textarea {
 }
 
 .customTextarea {
-    font-family: "roboto";
+    font-family: "Raleway", sans-serif;
     height: 1em;
     width: 1em;
 }
 
 a {
     text-decoration: none;
-    font-family: "roboto";
+    font-family: "Roboto", sans-serif;
     font-size: 100%;
-    font-weight: 500;
     color: #f1f1f1;
 }
 
@@ -198,39 +214,126 @@ a {
     color: #f1f1f1;
 }
 
-
 .navbar {
+    width:104%;
+    overflow-x: hidden;
     background-color: #ec8558;
-    position: fixed;
+    position: sticky;
     width: 100%;
     z-index: 200;
-    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1);
+    box-shadow: 0px 4px 0px 0 rgba(0, 0 , 0, 0.1), 0px -4px 0px 0 rgba(0, 0 , 0, 0.1);
 }
-.accordionButton {
-    color: whitesmoke;
-    border: 0px solid transparent;
-    border-radius: 16px;
-    display: inline-block;
+
+.commentBox {
+    width: 80%;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+button.accordion {
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #d1d1d1;
+    border: none;
+    outline: none;
+    text-align: left;
+    padding: 15px 20px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1)
+}
+
+button.accordion:hover {
+    background-color: skyblue;
+    transition-duration: .3s;
+}
+
+button.accordion::after {
+    content: '\f055';
+    font-family: "fontawesome";
+    font-size: 24px;
+    color: #333;
     float: right;
-    padding: 4px 8px;
-    margin-right: 2%;
-    background-color: #777;
 }
 
+button.accordion.status-open::after {
+    content: '\f056';
+}
 
-.accordionButton:hover {
-    background-color: #aaa;
-    transition-duration: .5s;
+.accordionContent {
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height .2s ease-in-out;
 }
 
 .icon {
     height: 40px;
     width: 40px;
-    margin-bottom: -12px;
-    margin-right: 5px;
+    margin-bottom: -14px;
+    margin-right: 12px;
     margin-left: 15px;
     background-image: url(computer.png);
     background-size: 100% 100%;
     display: inline-block;
-    
 }
+
+.fixed {
+    position: fixed;
+    top: 0%;
+}
+
+.navHolder {
+    height: 0px;
+}
+
+.space {
+    height: 37px
+}
+
+.hidden {
+    display: none;
+    z-index: 100;
+    text-align: center;
+}
+
+.boxImg {
+    background-image: url(ball.png);
+    background-size: auto 90%;
+    z-index: 400;
+    height: 50%;
+    width: 100%;
+    position: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none;
+}
+
+.idReg {
+    display: none;
+}
+
+.deleteButton {
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    float: right;
+    margin-right: 2%;
+    background-color: #ed0c46;
+    border-radius: 15px;
+    border: 0px solid transparent;
+    box-shadow: 0px 3px 3px 0 rgba(0, 0 , 0, 0.1);
+}
+
+.deleteButton::after {
+    content: '\f1f8';
+    font-family: "fontawesome";
+    font-size: 19px;
+    color: #333;
+}
+.deleteButton:hover {
+    background-color: #ff648c;
+    transition-duration: .5s;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0 , 0, 0.15);
+}
+
