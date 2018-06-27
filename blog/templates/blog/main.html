@@ -23,20 +23,18 @@
         </div>
     </div>
     <div class="container">
-        <div class="navbar">
-            <div class="icon">
-            </div>
-            <a href="#home">
+        <div class="navbar" align="center">
+            <a href="#home" id="home">
                 <span> 
                     Home
                 </span>
             </a>   
-            <a href="#news">
+            <a href="#news" id="news">
                 <span> 
                     News
                 </span>
             </a>
-            <a href="#download">
+            <a href="#download" id="download">
                 <span> 
                     Download
                 </span>
@@ -53,37 +51,55 @@
                         <p2> 
                             {{ post.title }} published on {{ post.published_date.date }}
                         </p2>
-                        <div class="idReg">
-                            {{ post.id }}
-                        </div>
                         <a href="{% url 'delete_post' pk=post.id %}" class="deleteButton" id="delete_post">       
                         </a>
                     </div>
                     <p> 
                         {{ post.post_text }} 
+                        {% if post.post_image %}
+                            <img src="{{ post.post_image.url }}" class="img-size">
+                        {% endif %}
                     </p>
+                    {% for comment in comment_list %}
+                        {% if comment.parent_id == post.id %}
+                        <p class="comment-post">
+                            {{ comment.comment_text }}
+                        </p>
+                        {% endif %}
+                    {% endfor %}
+                    <button class="accordion interior"> 
+                        <p6>
+                            Comment
+                        </p6>
+                    </button>
+                    <div class="accordionContent">
+                        <form  enctype="multipart/form-data" action="{% url 'make_comment' post.id %}" method="post">         
+                            {% csrf_token %}
+                            {{ form_comment.as_p }}
+                            <input type="submit" class="button"/> 
+                        </form>
+                    </div>
                 </div>
             {% endfor %}
         {% endblock %}
         <div class="commentBox">
-            <button class="accordion"> Comment
+            <button class="accordion exterior"> 
+                <p6>
+                    Comment
+                </p6>
             </button>
             <div class="accordionContent">
-                <form action="{% url 'make_post' %}" method="post">         
-            {% csrf_token %}
-            {{ form_post.as_p }}
-            <input type="submit" class="button"/> 
-        </form>
+                <form  enctype="multipart/form-data" action="{% url 'make_post' %}" method="post">         
+                    {% csrf_token %}
+                    {{ form_post.as_p }}
+                    <input type="submit" class="button"/> 
+                </form>
             </div>
         </div>
-        
-        <br>
-        <br>
-        <br>
-        <br>
         <div class="transparentBar"></div>
         <div class="bottomBar">
             <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
+            <button id='up-button'></button>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -92,9 +108,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{% static 'blog/main.js' %}"></script>
     <script>
-    $(document).ready(function(){
+    $(function(){
         $('.boxImg').fadeIn(1000);
-        $('.hidden').delay(1000).fadeIn(3000);
+        $('.hidden').delay(800).fadeIn(2000);
     });
     $(window).scroll( function() {
         var windowDivHeight = $('.topImg').height();

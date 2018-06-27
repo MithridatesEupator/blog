@@ -21,7 +21,7 @@ body {
 p {
     font-family: "Raleway", sans-serif;
     color: #333;
-    margin: 10px 10px;
+    margin: 2% 2%;
     z-index: 100;
 }
 
@@ -30,7 +30,7 @@ p2 {
     font-family: "Raleway", sans-serif;
     color: #333;
     display: inline-block;
-    margin-left: calc(2% + 12px);
+    margin-left: calc(2% + 7px);
 }
 
 p3 {
@@ -63,6 +63,15 @@ p5 {
     transform: translate(-50%);
 }
 
+p6 {
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    color: #444;
+    z-index: 400;
+    position: fixed;
+    transform: translate(-50%);
+}
+
 h1 {
     color: #111;
     font-family: "Raleway", sans-serif;
@@ -75,6 +84,7 @@ h1 {
 
 .whiteFont {
     color: whitesmoke;
+    margin-left: calc(2% + 5px);
 }
 
 .line {
@@ -105,10 +115,9 @@ h1 {
 .post {
     background-color: #7eb0d0;
     border-radius: 4px;
-    padding: 0px 0px;
     margin: 2% 5%;
     padding: 0% 0% 1% 0%;
-    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1);
+    box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
 .postHead {
@@ -122,7 +131,6 @@ h1 {
 .postContainer {
     display: inline-block;
     margin: 4% 0%;
-    
 }
 
 .bottomBar {
@@ -175,6 +183,7 @@ textarea {
     margin-right: auto;
     margin-bottom: 3%;
     width: 80%;
+    padding: 6px;
     outline: none;
     border: 2px solid #b9c3cb; 
     background-color: #eef9fd;
@@ -196,17 +205,18 @@ a {
     font-family: "Roboto", sans-serif;
     font-size: 100%;
     color: #f1f1f1;
+    outline:0;
 }
 
-
 .navbar span {
+    color: #f1f1f1;
     display: inline-block;
-    padding: 14px 20px;
+    padding: 14px 20px 10px 20px;
+    border-bottom: 4px solid transparent;
 }
 
 .navbar span:hover {
-    background-color: #d77347;
-    color: #f1f1f1;
+    border-bottom: 4px solid white;
     transition-duration: .4s;
 }
 
@@ -221,27 +231,35 @@ a {
     position: sticky;
     width: 100%;
     z-index: 200;
-    box-shadow: 0px 4px 0px 0 rgba(0, 0 , 0, 0.1), 0px -4px 0px 0 rgba(0, 0 , 0, 0.1);
+    box-shadow: 0px 4px 0px 0 rgba(0, 0, 0, 0.1), 0px -4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
 .commentBox {
-    width: 80%;
-    max-width: 600px;
-    margin: 10px auto;
+    width: 50%;
+    margin: 50px auto 120px auto;
 }
 
 button.accordion {
     font-family: "Raleway", sans-serif;
     font-size: 18px;
-    width: 100%;
     border-radius: 4px;
     background-color: #d1d1d1;
     border: none;
     outline: none;
-    text-align: left;
+    text-align: center;
     padding: 15px 20px;
     cursor: pointer;
-    box-shadow: 4px 4px 0px 0 rgba(0, 0 , 0, 0.1)
+    box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
+}
+
+.interior {
+    transform: translateX(12.5%);
+    width: 80%;
+}
+
+.exterior {
+    transform: translateX(-8.4%);
+    width: 120%;
 }
 
 button.accordion:hover {
@@ -264,18 +282,7 @@ button.accordion.status-open::after {
 .accordionContent {
     overflow: hidden;
     max-height: 0px;
-    transition: max-height .2s ease-in-out;
-}
-
-.icon {
-    height: 40px;
-    width: 40px;
-    margin-bottom: -14px;
-    margin-right: 12px;
-    margin-left: 15px;
-    background-image: url(computer.png);
-    background-size: 100% 100%;
-    display: inline-block;
+    transition: max-height .4s ease-in-out;
 }
 
 .fixed {
@@ -307,6 +314,7 @@ button.accordion.status-open::after {
     background-repeat: no-repeat;
     background-position: center;
     display: none;
+    animation: blur-fade-in 4s;
 }
 
 .idReg {
@@ -319,10 +327,8 @@ button.accordion.status-open::after {
     width: 20px;
     float: right;
     margin-right: 2%;
-    background-color: #ed0c46;
-    border-radius: 15px;
+    background-color: transparent;
     border: 0px solid transparent;
-    box-shadow: 0px 3px 3px 0 rgba(0, 0 , 0, 0.1);
 }
 
 .deleteButton::after {
@@ -331,9 +337,82 @@ button.accordion.status-open::after {
     font-size: 19px;
     color: #333;
 }
+
 .deleteButton:hover {
-    background-color: #ff648c;
+    color: #fff;
     transition-duration: .5s;
-    box-shadow: 0px 4px 4px 0 rgba(0, 0 , 0, 0.15);
 }
 
+.img-size {
+    width: 60%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 2%;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
+    background-color: #d1d1d1;
+    image-rendering: pixelated;
+}
+
+.comment-post {
+    margin: 0px 5% 2% 5%;
+}
+
+.comment-post::before {
+    font-family: "fontawesome";
+    content: '\f101';
+}
+
+.special {
+    width: 70%;
+}
+#id_post_image {
+    font-family: "raleway", sans-serif;
+}
+
+#up-button {
+    font-family: "fontawesome";
+    background-color: transparent;
+    border: none;
+    color: #c1c1c1;
+    font-size: 120%;
+    float: right;
+    margin-right: 1%;
+    outline:0;
+}
+
+#up-button::after {
+    content: "\f062";
+} 
+
+#up-button:hover {
+    color: #fff;
+    transition-duration: .5s;
+}
+
+#home::before {
+    font-family: "fontawesome";
+    content: "\f015";
+}
+
+#news::before {
+    font-family: "fontawesome";
+    content: "\f1ea";
+}
+
+#download::before {
+    font-family: "fontawesome";
+    content: "\f019";
+}
+
+@-webkit-keyframes blur-fade-in {
+    from {filter: blur(4px);}
+    to {filter: blur(0px);}
+}
+
+@keyframes blur-fade-in {
+    from {filter: blur(4px);}
+    to {filter: blur(0px);}
+}
