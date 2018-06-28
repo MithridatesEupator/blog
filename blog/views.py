@@ -8,6 +8,7 @@ from django.utils import timezone
 from .forms import *
 from django import forms
 from django.contrib import messages
+from django.template.defaultfilters import slugify 
 
 # Create your views here.
 def index(request):
@@ -16,18 +17,20 @@ def index(request):
     form_post = make_post_form()
     form_comment = make_comment_form()
     context = {
-        "blog_post_list" : blog_post_list, "form_post" : form_post, "form_comment" : form_comment, "comment_list" :
-        comment_list
+        "blog_post_list" : blog_post_list, "form_post" : form_post, "form_comment" : form_comment, "comment_list" : comment_list
     }
     return render(request, 'blog/main.html', context)
 
 
-def details(request, id):
-    individual_post = Posts.objects.get(id=id)
+def see_post(request, slug):
+    individual_post = Post.objects.get(post_url=slug)
+    comment_list = Comment.objects.all()
+    form_post = make_post_form()
+    form_comment = make_comment_form()
     context = {
-        "individual_post" : individual_post
+        "individual_post" : individual_post, "comment_list" : comment_list, "form_post" : form_post, "form_comment" : form_comment,
     }
-    return render(request, 'blog/detail.html', context)
+    return render(request, 'blog/individual_post.html', context)
 
 def make_post(request):
     if request.method == 'GET':
@@ -39,7 +42,8 @@ def make_post(request):
             title_pass=form_post.cleaned_data['title']
             post_text_pass = form_post.cleaned_data['post_text']
             post_image_pass = form_post.cleaned_data['post_image']
-            post = Post(title=title_pass, post_text=post_text_pass, published_date=timezone.now(), post_image=post_image_pass)
+            post_slug_pass = slugify(post_text_pass)
+            post = Post(title=title_pass, post_text=post_text_pass, published_date=timezone.now(), post_image=post_image_pass, post_url=post_slug_pass)
             post.save()
         return HttpResponseRedirect(reverse('index'))
     
@@ -53,7 +57,8 @@ def make_comment(request, pk):
             parent_post = Post.objects.get(pk=pk)
             comment = Comment(comment_text=comment_text_pass, published_date=timezone.now(), parent=parent_post)        
             comment.save()
-        return HttpResponseRedirect(reverse('index'))
+            slug_pass= parent_post.post_url
+            return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
     
 def delete_post(request, pk):
     template = 'blog/delete_post.html'

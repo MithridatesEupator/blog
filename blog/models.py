@@ -9,6 +9,8 @@ class Post(models.Model):
     post_text = models.TextField(default='')
     published_date = models.DateTimeField('date published')
     post_image = models.ImageField(blank=True, null=True, upload_to='images/%Y/%m/%D/')
+    post_url = models.SlugField(max_length=50, unique=True, blank=True, null=True)
+    
     
     def __str__(self):
         return self.title

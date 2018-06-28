@@ -1,0 +1,51 @@
+{% include 'blog/head.html' %}
+
+{% block content %}
+<body>
+    <div class="post">
+        <div class="post-head-post"> 
+            <p2> 
+                {{ individual_post.title }} published on {{ individual_post.published_date.date }}
+            </p2>
+            <a href="{% url 'delete_post' pk=individual_post.id %}" class="deleteButton" id="delete_post">       
+            </a>
+        </div>
+        <p> 
+            {{ individual_post.post_text }} 
+            {% if individual_post.post_image %}
+                <img src="{{ individual_post.post_image.url }}" class="img-size">
+            {% endif %}
+        </p>
+        {% for comment in comment_list %}
+            {% if comment.parent_id == individual_post.id %}
+                <div class="comment-box">
+                    <p>
+                        {{ comment.comment_text }}
+                    </p>
+                </div>
+                <br>
+            {% endif %}
+        {% endfor %}
+        <button class="accordion interior"> 
+            <p6>
+                Make a Comment
+            </p6>
+        </button>
+        <div class="accordionContent">
+            <form  enctype="multipart/form-data" action="{% url 'make_comment' individual_post.id %}" method="post">         
+                {% csrf_token %}
+                {{ form_comment.as_p }}
+                <input type="submit" class="button"/> 
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="transparentBar"></div>
+        <div class="bottomBar">
+            <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
+            <button id='up-button'></button>
+        </div>
+        {% include 'blog/script.html' %}
+</body>
+{% endblock %}

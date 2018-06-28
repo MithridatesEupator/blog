@@ -8,6 +8,10 @@
     <link href="{% static 'blog/style.css'%}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/png" href="{% static 'blog/computer.png'%}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="topImg">
@@ -47,45 +51,32 @@
         {% block content %}
             {% for post in blog_post_list %}
                 <div class="post">
-                    <div class="postHead"> 
-                        <p2> 
+                    <div class="post-head" onclick="" id="{{ post.post_url}}"> 
+                        <p2>
                             {{ post.title }} published on {{ post.published_date.date }}
                         </p2>
-                        <a href="{% url 'delete_post' pk=post.id %}" class="deleteButton" id="delete_post">       
-                        </a>
                     </div>
+                    <script>
+                    $(function () {
+                        $("#{{ post.post_url }}").click(function() {
+                            window.location.href="{% url 'see_post' slug=post.post_url %}"
+                            return False;
+                        });
+                    });
+                    </script>
                     <p> 
                         {{ post.post_text }} 
                         {% if post.post_image %}
                             <img src="{{ post.post_image.url }}" class="img-size">
                         {% endif %}
                     </p>
-                    {% for comment in comment_list %}
-                        {% if comment.parent_id == post.id %}
-                        <p class="comment-post">
-                            {{ comment.comment_text }}
-                        </p>
-                        {% endif %}
-                    {% endfor %}
-                    <button class="accordion interior"> 
-                        <p6>
-                            Comment
-                        </p6>
-                    </button>
-                    <div class="accordionContent">
-                        <form  enctype="multipart/form-data" action="{% url 'make_comment' post.id %}" method="post">         
-                            {% csrf_token %}
-                            {{ form_comment.as_p }}
-                            <input type="submit" class="button"/> 
-                        </form>
-                    </div>
                 </div>
             {% endfor %}
         {% endblock %}
         <div class="commentBox">
             <button class="accordion exterior"> 
                 <p6>
-                    Comment
+                    Make a Post
                 </p6>
             </button>
             <div class="accordionContent">
@@ -102,10 +93,6 @@
             <button id='up-button'></button>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{% static 'blog/main.js' %}"></script>
     <script>
     $(function(){

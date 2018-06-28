@@ -120,7 +120,21 @@ h1 {
     box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
-.postHead {
+.post-head {
+    padding: 20px 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #d1d1d1;
+    text-align: center;
+}
+
+.post-head:hover {
+    background-color: skyblue;
+    transition-duration: .5s;
+    cursor: pointer;
+}
+
+.post-head-post {
     padding: 20px 0;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -252,16 +266,6 @@ button.accordion {
     box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
-.interior {
-    transform: translateX(12.5%);
-    width: 80%;
-}
-
-.exterior {
-    transform: translateX(-8.4%);
-    width: 120%;
-}
-
 button.accordion:hover {
     background-color: skyblue;
     transition-duration: .3s;
@@ -273,6 +277,16 @@ button.accordion::after {
     font-size: 24px;
     color: #333;
     float: right;
+}
+
+.interior {
+    transform: translateX(12.5%);
+    width: 80%;
+}
+
+.exterior {
+    transform: translateX(-8.4%);
+    width: 120%;
 }
 
 button.accordion.status-open::after {
@@ -356,18 +370,17 @@ button.accordion.status-open::after {
     image-rendering: pixelated;
 }
 
-.comment-post {
-    margin: 0px 5% 2% 5%;
-}
-
-.comment-post::before {
-    font-family: "fontawesome";
-    content: '\f101';
-}
-
 .special {
     width: 70%;
 }
+
+.post-header-style {
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+    color: #333;
+    display: inline-block;
+}
+
 #id_post_image {
     font-family: "raleway", sans-serif;
 }
@@ -381,6 +394,14 @@ button.accordion.status-open::after {
     float: right;
     margin-right: 1%;
     outline:0;
+}
+
+.comment-box {
+    background-color: #d1d1d1;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 0 2%;
+    padding: 1% 0;
 }
 
 #up-button::after {
