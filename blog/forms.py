@@ -13,3 +13,8 @@ class delete_post_form(forms.ModelForm):
     class Meta:
         model = Post
         fields = []
+        
+class delete_comment_form(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = []

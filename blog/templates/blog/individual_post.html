@@ -4,24 +4,40 @@
 <body>
     <div class="post">
         <div class="post-head-post"> 
-            <p2> 
+            <p2 class="individual"> 
                 {{ individual_post.title }} published on {{ individual_post.published_date.date }}
-            </p2>
-            <a href="{% url 'delete_post' pk=individual_post.id %}" class="deleteButton" id="delete_post">       
-            </a>
+            </p2> 
+            <form  enctype="multipart/form-data" action="{% url 'delete_post' slug=individual_post.post_url %}" method="post" class="form-post">        
+                {% csrf_token %}
+                {{ form_delete_post.as_p }}
+                <input type="submit" class="delete-button" value="Remove"/> 
+            </form> 
         </div>
+          
         <p> 
             {{ individual_post.post_text }} 
             {% if individual_post.post_image %}
                 <img src="{{ individual_post.post_image.url }}" class="img-size">
             {% endif %}
         </p>
-        {% for comment in comment_list %}
-            {% if comment.parent_id == individual_post.id %}
+        <div class="like-box">
+            {{ individual_post.post_likes }}
+            <a href="{% url 'post_vote' vote=1 pk=individual_post.id %}" class="up-vote-button">
+            </a>
+        </div>    
+        {% for comment in comment_list %} 
+            {% if comment.parent_id == individual_post.id and not comment.comment_delete_status %}
                 <div class="comment-box">
-                    <p>
+                    <p class="comment-p">
                         {{ comment.comment_text }}
+                        <a href="{% url 'delete_comment' pk=comment.id %}" class="delete-button-comment" id="delete_comment"> 
+                        </a>
                     </p>
+                    <div class="like-box">
+                        {{ comment.comment_likes }}
+                        <a href="{% url 'comment_vote' vote=1 pk=comment.id %}" class="up-vote-button">
+                        </a>
+                    </div>
                 </div>
                 <br>
             {% endif %}

@@ -23,12 +23,15 @@ def index(request):
 
 
 def see_post(request, slug):
-    individual_post = Post.objects.get(post_url=slug)
+    individual_post = get_object_or_404(Post, post_url=slug)
     comment_list = Comment.objects.all()
     form_post = make_post_form()
     form_comment = make_comment_form()
+    form_delete_post = delete_post_form()
+    form_delete_comment = delete_comment_form()
     context = {
         "individual_post" : individual_post, "comment_list" : comment_list, "form_post" : form_post, "form_comment" : form_comment,
+        "form_delete_post" : form_delete_post, "form_delete_comment" : form_delete_comment
     }
     return render(request, 'blog/individual_post.html', context)
 
@@ -42,7 +45,7 @@ def make_post(request):
             title_pass=form_post.cleaned_data['title']
             post_text_pass = form_post.cleaned_data['post_text']
             post_image_pass = form_post.cleaned_data['post_image']
-            post_slug_pass = slugify(post_text_pass)
+            post_slug_pass = slugify(title_pass)
             post = Post(title=title_pass, post_text=post_text_pass, published_date=timezone.now(), post_image=post_image_pass, post_url=post_slug_pass)
             post.save()
         return HttpResponseRedirect(reverse('index'))
@@ -54,23 +57,41 @@ def make_comment(request, pk):
         form_comment = make_comment_form(request.POST, request.FILES)
         if form_comment.is_valid():
             comment_text_pass = form_comment.cleaned_data['comment_text']
-            parent_post = Post.objects.get(pk=pk)
+            parent_post = get_object_or_404(Post, pk=pk)
             comment = Comment(comment_text=comment_text_pass, published_date=timezone.now(), parent=parent_post)        
             comment.save()
             slug_pass= parent_post.post_url
             return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
     
-def delete_post(request, pk):
-    template = 'blog/delete_post.html'
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == 'GET':
-        form = delete_post_form(request.POST, instance=post)
-        comment_list = Comment.objects.all()
-        if form.is_valid():
-            post.delete()
-            for comment in comment_list:
-                if comment.parent_id == pk:
-                    comment.delete()
-    else: 
-        form = delete_post_form(instance=post)
+def delete_post(request, slug):
+    post = get_object_or_404(Post, post_url=slug)
+    if request.method == 'POST':
+        delete_form = delete_post_form(request.POST, request.FILES)
+        if delete_form.is_valid:
+            post.post_delete_status = True;
+            post.save();
     return HttpResponseRedirect(reverse('index'))
+
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    parent_post = get_object_or_404(Post, pk=comment.parent_id)
+    comment.comment_delete_status = True;
+    comment.save();
+    slug_pass= parent_post.post_url
+    return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
+
+def comment_vote(request, vote, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.comment_likes += 1
+    comment.save()
+    parent_post = get_object_or_404(Post, pk=comment.parent_id)
+    slug_pass= parent_post.post_url
+    return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
+    
+def post_vote(request, vote, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.post_likes += 1
+    post.save()
+    slug_pass= post.post_url
+    return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
+    

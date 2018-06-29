@@ -46,12 +46,23 @@
         </div>
         <div class="navHolder"> 
         </div>
+        <div class="side-left">
+            {% for post in blog_post_list %}
+                {% if not post.post_delete_status %}
+                <p class="highlight">
+                    {{ post.title }}
+                </p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="side-right">
         <div class="postContainer">
         </div>
         {% block content %}
             {% for post in blog_post_list %}
+                {% if not post.post_delete_status %}
                 <div class="post">
-                    <div class="post-head" onclick="" id="{{ post.post_url}}"> 
+                    <div class="post-head" id="{{ post.post_url}}" style="text-align: center;"> 
                         <p2>
                             {{ post.title }} published on {{ post.published_date.date }}
                         </p2>
@@ -71,6 +82,7 @@
                         {% endif %}
                     </p>
                 </div>
+                {% endif %}
             {% endfor %}
         {% endblock %}
         <div class="commentBox">
@@ -80,12 +92,13 @@
                 </p6>
             </button>
             <div class="accordionContent">
-                <form  enctype="multipart/form-data" action="{% url 'make_post' %}" method="post">         
+                <form  enctype="multipart/form-data" action="{% url 'make_post' %}" method="post" class="form-main">         
                     {% csrf_token %}
                     {{ form_post.as_p }}
                     <input type="submit" class="button"/> 
                 </form>
             </div>
+        </div>
         </div>
         <div class="transparentBar"></div>
         <div class="bottomBar">
@@ -101,9 +114,7 @@
     });
     $(window).scroll( function() {
         var windowDivHeight = $('.topImg').height();
-        console.log(windowDivHeight);
         if ($(this).scrollTop() > windowDivHeight){  
-            console.log("we1321");
             $('.navbar').addClass("fixed");
             $('.navHolder').addClass("space");
         }

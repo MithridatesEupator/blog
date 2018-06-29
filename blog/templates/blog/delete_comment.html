@@ -1,0 +1,10 @@
+<head>
+    {% load static %}
+    <link href="{% static 'blog/style.css'%}" rel="stylesheet">
+</head>
+<body>
+    <form action="{% url 'delete_post' pk=post.id %}" method="post">                 
+        {% csrf_token %}
+        <input type="submit" class="button"/>
+    </form>
+</body>    

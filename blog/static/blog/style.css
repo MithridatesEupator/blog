@@ -1,25 +1,55 @@
 body {
     margin: 0;
     position: relative;
-    background-color: #588eb1;
+    background-color: #a6c1d2;
 }
 
 .topImg {
     position: relative;
     background-color: #d1d1d1;
-    height: 50%;
+    height: 60%;
     z-index: -100;
     text-align: center;
 }
 
 .container {
+    box-shadow: 0px -4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background-color: #a6c1d2;
+    z-index: 900;
     position: relative;
-    margin: 0%;
-    background-color: #588eb1;
+    overflow: auto;
+}
+
+.side-left {
+    display: inline-block;
+    position: relative;
+    margin: 7% 0;
+    margin-right: 2%;
+    float: left;
+    padding: 1% 2%;
+    width: 22%;
+    background-color: #f8f8f8;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.1);
+    transform: translateX(5%);
+}
+
+.side-right {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    width: 70%;
+    float: right;
+}
+
+.individual_post {
+    transform: translateX(-50%);
 }
 
 p {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #333;
     margin: 2% 2%;
     z-index: 100;
@@ -27,14 +57,13 @@ p {
 
 p2 {
     font-size: 16px;
-    font-family: "Raleway", sans-serif;
-    color: #333;
+    font-family: "Roboto", sans-serif;
     display: inline-block;
-    margin-left: calc(2% + 7px);
+    color: #f4f4f4;
 }
 
 p3 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: whitesmoke;
     margin: 10px 10px;
     z-index: 100;
@@ -43,10 +72,10 @@ p3 {
 p4 {
     display: inline-block;
     margin-right: auto;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 420%;
     top: 13.5%;
-    color: #444;
+    color: #333;
     z-index: 100;
     position: fixed;
     transform: translate(-50%);
@@ -54,10 +83,10 @@ p4 {
 
 p5 {
     display: inline-block;
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 170%;
     top: 26%;
-    color: #444;
+    color: #333;
     z-index: 100;
     position: fixed;
     transform: translate(-50%);
@@ -65,16 +94,28 @@ p5 {
 
 p6 {
     display: inline-block;
-    font-family: "Raleway", sans-serif;
-    color: #444;
+    font-family: "Roboto", sans-serif;
+    color: #333;
     z-index: 400;
     position: fixed;
     transform: translate(-50%);
 }
 
+.comment-p::before {
+    color: #333;
+    font-family: "fontawesome";
+    content: "\f10d";
+}
+
+.comment-p::after {
+    color: #333;
+    font-family: "fontawesome";
+    content: "\f10e";
+}
+
 h1 {
     color: #111;
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-size: 30px;
     left: 50%;
@@ -107,39 +148,38 @@ h1 {
 }
 
 .button:hover {
-    color: #588eb1;
+    color: #fff;
     background-color: #333;
     transition-duration: .3s;
 }
 
 .post {
-    background-color: #7eb0d0;
+    background-color: #f8f8f8;
     border-radius: 4px;
-    margin: 2% 5%;
+    margin: 2% 2%;
     padding: 0% 0% 1% 0%;
     box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
 .post-head {
-    padding: 20px 0;
+    padding: 2% 3%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    background-color: #d1d1d1;
-    text-align: center;
+    background-color: #5a6274;
 }
 
 .post-head:hover {
-    background-color: skyblue;
+    background-color: #5fc0e8;
     transition-duration: .5s;
     cursor: pointer;
 }
 
 .post-head-post {
-    padding: 20px 0;
+    padding: 2% 3%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    background-color: #d1d1d1;
-    text-align: center;
+    background-color: #5a6274;
+    
 }
 
 .postContainer {
@@ -185,7 +225,7 @@ img {
     text-align: center;
 }
 
-form {
+.form-main {
     margin: 20px 20px;
     text-align: center;
 }
@@ -209,7 +249,7 @@ textarea {
 }
 
 .customTextarea {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     height: 1em;
     width: 1em;
 }
@@ -223,14 +263,14 @@ a {
 }
 
 .navbar span {
-    color: #f1f1f1;
+    color: #333;
     display: inline-block;
     padding: 14px 20px 10px 20px;
     border-bottom: 4px solid transparent;
 }
 
 .navbar span:hover {
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid #333;
     transition-duration: .4s;
 }
 
@@ -241,11 +281,11 @@ a {
 .navbar {
     width:104%;
     overflow-x: hidden;
-    background-color: #ec8558;
+    background-color: #a6c1d2;
     position: sticky;
     width: 100%;
-    z-index: 200;
-    box-shadow: 0px 4px 0px 0 rgba(0, 0, 0, 0.1), 0px -4px 0px 0 rgba(0, 0, 0, 0.1);
+    z-index: 800;
+    transition-duration: .6s;
 }
 
 .commentBox {
@@ -254,10 +294,10 @@ a {
 }
 
 button.accordion {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     border-radius: 4px;
-    background-color: #d1d1d1;
+    background-color: #d6ebf5;
     border: none;
     outline: none;
     text-align: center;
@@ -302,9 +342,14 @@ button.accordion.status-open::after {
 .fixed {
     position: fixed;
     top: 0%;
+    color: aqua;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 0px 0 rgba(0, 0, 0, 0.1);
+    transition-duration: .6s;
 }
 
 .navHolder {
+    background-color: #a6c1d2;
     height: 0px;
 }
 
@@ -335,7 +380,26 @@ button.accordion.status-open::after {
     display: none;
 }
 
-.deleteButton {
+.form-post {
+    display: inline-block;
+    float: right;
+}
+
+.delete-button {
+    font-family: "Roboto", sans-serif;
+    background-color: #98ccfd;
+    border: 2px solid #4788c7;
+    border-radius: 4px;
+    outline: 0;
+}
+
+.delete-button:hover {
+    background-color: #fc5753;
+    border: 2px solid #e0504d;
+    transition-duration: .5s;
+}
+
+.delete-button-comment {
     text-align: center;
     height: 20px;
     width: 20px;
@@ -345,15 +409,15 @@ button.accordion.status-open::after {
     border: 0px solid transparent;
 }
 
-.deleteButton::after {
+.delete-button-comment::after {
     content: '\f1f8';
     font-family: "fontawesome";
     font-size: 19px;
     color: #333;
 }
 
-.deleteButton:hover {
-    color: #fff;
+.delete-button-comment:hover {
+    color: blue;
     transition-duration: .5s;
 }
 
@@ -376,13 +440,13 @@ button.accordion.status-open::after {
 
 .post-header-style {
     font-size: 16px;
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #333;
     display: inline-block;
 }
 
 #id_post_image {
-    font-family: "raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 #up-button {
@@ -397,14 +461,52 @@ button.accordion.status-open::after {
 }
 
 .comment-box {
-    background-color: #d1d1d1;
+    background-color: #d6ebf5;
     border-radius: 4px;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
     margin: 0 2%;
-    padding: 1% 0;
+    padding: .1% 0;
+}
+
+.highlight {
+    margin: 6% 0;
+}
+
+.highlight::before {
+    font-family: "fontawesome";
+    content: "\f15c";
+    color: #333;
+}
+
+.like-box {
+    font-family: "Roboto", sans-serif;
+    margin: 1% 2%;
+    color: #333;
+}
+
+.up-vote-button {
+    display: inline-block;
+    color: black;
+    padding: 5px 5px;
+    background-color: #eef9fd;
+    border: 2px solid #b9c3cb;
+    border-radius: 3px;
+    margin: .7%;
+}
+
+.up-vote-button:after {
+    font-family: "fontawesome";
+    content: "\f164";
+    color: #333;
+}
+
+.up-vote-button:hover {
+    background-color: #b5ebff;
+    transition-duration: .5s;
 }
 
 #up-button::after {
+    color: #333;
     content: "\f062";
 } 
 
@@ -414,16 +516,19 @@ button.accordion.status-open::after {
 }
 
 #home::before {
+    color: #333;
     font-family: "fontawesome";
     content: "\f015";
 }
 
 #news::before {
+    color: #333;
     font-family: "fontawesome";
     content: "\f1ea";
 }
 
 #download::before {
+    color: #333;
     font-family: "fontawesome";
     content: "\f019";
 }
