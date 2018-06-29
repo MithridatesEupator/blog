@@ -13,12 +13,11 @@
                 <input type="submit" class="delete-button" value="Remove"/> 
             </form> 
         </div>
-          
+        {% if individual_post.post_image %}
+            <img src="{{ individual_post.post_image.url }}" class="img-size">
+        {% endif %}  
         <p> 
             {{ individual_post.post_text }} 
-            {% if individual_post.post_image %}
-                <img src="{{ individual_post.post_image.url }}" class="img-size">
-            {% endif %}
         </p>
         <div class="like-box">
             {{ individual_post.post_likes }}
@@ -42,17 +41,17 @@
                 <br>
             {% endif %}
         {% endfor %}
-        <button class="accordion interior"> 
-            <p6>
-                Make a Comment
-            </p6>
-        </button>
-        <div class="accordionContent">
-            <form  enctype="multipart/form-data" action="{% url 'make_comment' individual_post.id %}" method="post">         
-                {% csrf_token %}
-                {{ form_comment.as_p }}
-                <input type="submit" class="button"/> 
-            </form>
+        <div class="commentBox">
+            <button class="accordion interior"> 
+                    Make a Post
+            </button>
+            <div class="accordionContent">
+                <form  enctype="multipart/form-data" action="{% url 'make_comment' individual_post.id %}" method="post" class="form-main">    
+                    {% csrf_token %}
+                    {{ form_comment.as_p }}
+                    <input type="submit" class="button"/> 
+                </form>
+            </div>
         </div>
     </div>
     <br>
