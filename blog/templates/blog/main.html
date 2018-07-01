@@ -43,15 +43,20 @@
                     Download
                 </span>
             </a>
+            <a href="#log-in" id="log-in">
+                <span> 
+                    Login
+                </span>
+            </a>
         </div>
         <div class="navHolder"> 
         </div>
         <div class="side-left">
             {% for post in blog_post_list %}
                 {% if not post.post_delete_status %}
-                <p class="highlight">
+                <a href="{% url 'see_post' slug=post.post_url %}" class="highlight">
                     {{ post.title }}
-                </p>
+                </a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -98,11 +103,7 @@
             </div>
         </div>
         </div>
-        <div class="transparentBar"></div>
-        <div class="bottomBar">
-            <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
-            <button id='up-button'></button>
-        </div>
+        <button id='up-button'></button>
     </div>
     <script src="{% static 'blog/main.js' %}"></script>
     <script>

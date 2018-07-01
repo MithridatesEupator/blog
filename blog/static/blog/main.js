@@ -13,10 +13,10 @@ for (var i = 0; i < accordion.length; i++) {
     }
 }
 
-var upButton = document.getElementById("up-button");
+/* var upButton = document.getElementById("up-button");
 upButton.onclick = function () {
     window.scrollTo(0,0);
-}
+} */
 
 /*var btn = document.getElementById("accordion");
 

@@ -128,9 +128,8 @@ h1 {
 }
 
 .line {
-    background-color: black;
+    background-color: #5a6274;
     height: 2px;
-    margin: 0px 5%;
 }
 
 .button {
@@ -201,7 +200,6 @@ h1 {
     height: 6%;
     width: 100%;
     position: fixed;
-    width: 100%;
     bottom: 0%;
     opacity: .8
 }
@@ -255,7 +253,7 @@ textarea {
     width: 1em;
 }
 
-a {
+.navbar a {
     text-decoration: none;
     font-family: "Roboto", sans-serif;
     font-size: 100%;
@@ -280,13 +278,13 @@ a {
 }
 
 .navbar {
-    width:104%;
     overflow-x: hidden;
     background-color: #a6c1d2;
     position: sticky;
     width: 100%;
     z-index: 800;
     transition-duration: .6s;
+    border-bottom: 1px #
 }
 
 .commentBox {
@@ -464,19 +462,23 @@ button.accordion.status-open::after {
     font-size: 120%;
     float: right;
     margin-right: 1%;
-    outline:0;
+    outline: 0;
+    position: fixed;
 }
 
 .comment-box {
-    background-color: #d6ebf5;
-    border-radius: 4px;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #5a6274;
     margin: 0 2%;
-    padding: .1% 0;
 }
 
 .highlight {
     margin: 6% 0;
+    font-family: "Roboto", sans-serif;
+    color: #333;
+    margin: 2% 2%;
+    z-index: 100;
+    text-decoration: none;
+    display: block;
 }
 
 .highlight::before {
@@ -487,7 +489,7 @@ button.accordion.status-open::after {
 
 .like-box {
     font-family: "Roboto", sans-serif;
-    margin: 1% 2%;
+    margin: 2% 2%;
     color: #333;
 }
 
@@ -499,6 +501,7 @@ button.accordion.status-open::after {
     border: 2px solid #b9c3cb;
     border-radius: 3px;
     margin: .7%;
+    text-decoration: none;
 }
 
 .up-vote-button:after {
@@ -509,16 +512,6 @@ button.accordion.status-open::after {
 
 .up-vote-button:hover {
     background-color: #b5ebff;
-    transition-duration: .5s;
-}
-
-#up-button::after {
-    color: #333;
-    content: "\f062";
-} 
-
-#up-button:hover {
-    color: #fff;
     transition-duration: .5s;
 }
 
@@ -538,6 +531,47 @@ button.accordion.status-open::after {
     color: #333;
     font-family: "fontawesome";
     content: "\f019";
+}
+
+#log-in {
+    display: inline-block;
+    color: #fff;
+    
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 0;
+}
+
+#log-in::before {
+    color: #333;
+    font-family: "fontawesome";
+    content: "\f007";
+}
+
+#log-in span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#log-in span::after {
+    font-family: "fontawesome";
+    content: '\f061';
+    position: absolute;
+    opacity: 0;
+    top: 40%;
+    right: -100%;
+    transition: 0.5s;
+}
+
+#log-in:hover span {
+    border-bottom: 4px solid transparent;
+}
+
+#log-in:hover span::after {
+    opacity: 1;
+    right: -10%;
 }
 
 @-webkit-keyframes blur-fade-in {

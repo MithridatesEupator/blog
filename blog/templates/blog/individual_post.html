@@ -23,7 +23,10 @@
             {{ individual_post.post_likes }}
             <a href="{% url 'post_vote' vote=1 pk=individual_post.id %}" class="up-vote-button">
             </a>
-        </div>    
+        </div>
+        
+        <div class="LINE"></div>
+        <p style="font-size: 120%;"> Comments </p>
         {% for comment in comment_list %} 
             {% if comment.parent_id == individual_post.id and not comment.comment_delete_status %}
                 <div class="comment-box">
@@ -56,11 +59,6 @@
     </div>
     <br>
     <br>
-    <div class="transparentBar"></div>
-        <div class="bottomBar">
-            <a href="/admin" class='whiteFont'> Created with Django&#8482; </a>
-            <button id='up-button'></button>
-        </div>
-        {% include 'blog/script.html' %}
+    {% include 'blog/script.html' %}
 </body>
 {% endblock %}
