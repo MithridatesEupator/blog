@@ -5,23 +5,26 @@
     <div class="post">
         <div class="post-head-post"> 
             <p2 class="individual"> 
-                {{ individual_post.title }} published on {{ individual_post.published_date.date }}
+                {{ individual_post.title }} published by {{ individual_post.poster.username }}
             </p2> 
-            <form  enctype="multipart/form-data" action="{% url 'delete_post' slug=individual_post.post_url %}" method="post" class="form-post">        
+            <form  enctype="multipart/form-data" action="{% url 'blog:delete_post' slug=individual_post.post_url %}" method="post" class="form-post">        
                 {% csrf_token %}
                 {{ form_delete_post.as_p }}
                 <input type="submit" class="delete-button" value="Remove"/> 
             </form> 
         </div>
+        <p> 
+        Published on {{ individual_post.published_date.date }}
+        </p>
         {% if individual_post.post_image %}
             <img src="{{ individual_post.post_image.url }}" class="img-size">
-        {% endif %}  
+        {% endif %}
         <p> 
             {{ individual_post.post_text }} 
         </p>
         <div class="like-box">
             {{ individual_post.post_likes }}
-            <a href="{% url 'post_vote' vote=1 pk=individual_post.id %}" class="up-vote-button">
+            <a href="{% url 'blog:post_vote' vote=1 pk=individual_post.id %}" class="up-vote-button">
             </a>
         </div>
         
@@ -31,13 +34,16 @@
             {% if comment.parent_id == individual_post.id and not comment.comment_delete_status %}
                 <div class="comment-box">
                     <p class="comment-p">
-                        {{ comment.comment_text }}
-                        <a href="{% url 'delete_comment' pk=comment.id %}" class="delete-button-comment" id="delete_comment"> 
+                        {{ comment.comment_text }} 
+                        <a href="{% url 'blog:delete_comment' pk=comment.id %}" class="delete-button-comment" id="delete_comment"> 
                         </a>
+                    </p>
+                    <p>
+                    - {{ comment.commenter.username }}
                     </p>
                     <div class="like-box">
                         {{ comment.comment_likes }}
-                        <a href="{% url 'comment_vote' vote=1 pk=comment.id %}" class="up-vote-button">
+                        <a href="{% url 'blog:comment_vote' vote=1 pk=comment.id %}" class="up-vote-button">
                         </a>
                     </div>
                 </div>
@@ -49,7 +55,7 @@
                     Make a Post
             </button>
             <div class="accordionContent">
-                <form  enctype="multipart/form-data" action="{% url 'make_comment' individual_post.id %}" method="post" class="form-main">    
+                <form  enctype="multipart/form-data" action="{% url 'blog:make_comment' individual_post.id %}" method="post" class="form-main">    
                     {% csrf_token %}
                     {{ form_comment.as_p }}
                     <input type="submit" class="button"/> 

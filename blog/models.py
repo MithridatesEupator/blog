@@ -1,8 +1,11 @@
 from django.db import models
 from django.db import models
 from django.utils import timezone
-
+from accounts.models import MyUser
 import datetime
+
+
+
 
 class Post(models.Model):
     title = models.CharField(max_length=140)
@@ -12,6 +15,7 @@ class Post(models.Model):
     post_url = models.SlugField(max_length=50, unique=True, blank=True, null=True)
     post_delete_status = models.BooleanField(default=False)
     post_likes = models.IntegerField(default=0) 
+    poster = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return self.title
@@ -24,11 +28,12 @@ class Comment(models.Model):
     published_date = models.DateTimeField('date published')
     parent = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE);
     comment_delete_status = models.BooleanField(default=False)
+    commenter = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
     comment_likes = models.IntegerField(default=0)
 
 class Question(models.Model):
     question_text = models.CharField(max_length=240)
-    published_date = models.DateTimeField('date published')
+    published_date = models.DateTimeField(auto_now_add=True)
 
 class Choice(models.Model):
     parent = models.ForeignKey(Question, on_delete=models.CASCADE)

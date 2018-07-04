@@ -18,3 +18,7 @@ class delete_comment_form(forms.ModelForm):
     class Meta:
         model = Comment
         fields = []
+        
+class log_in_form(forms.Form):
+    user_field = forms.CharField()
+    password_field = forms.CharField()
