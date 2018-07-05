@@ -47,3 +47,20 @@ class UserLoginForm(forms.Form):
         self.cleaned_data["user_obj"] = user_obj
         return super(UserLoginForm, self).clean(*args, **kwargs)
     
+    
+class EditProfile(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = []
+        
+class EditUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'bio', 'profile_pic']
+        
+    def __init__(self, *args, **kwargs):
+        super(EditUser, self).__init__(*args, **kwargs)
+        self.fields['username'].required = False
+        self.fields['email'].required = False
+        self.fields['bio'].required = False
+        self.fields['profile_pic'].required = False

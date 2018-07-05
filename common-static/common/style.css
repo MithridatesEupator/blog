@@ -51,6 +51,7 @@ body {
 p {
     font-family: "Roboto", sans-serif;
     color: #333;
+    margin: 2% 2%;
     z-index: 100;
 }
 
@@ -165,7 +166,7 @@ h1 {
     background-color: #f8f8f8;
     border-radius: 4px;
     margin: 2% 2%;
-    padding: 1% 1%;
+    padding: 0% 0% 1% 0%;
     box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -183,7 +184,7 @@ h1 {
 }
 
 .post-head-post {
-    padding: 2% 3%;
+    padding: 2% 2%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     background-color: #5a6274;
@@ -233,7 +234,7 @@ img {
 
 .form-main {
     margin: 20px 20px;
-    font-family: "roboto", sans-serif;
+    text-align: center;
 }
 
 textarea {
@@ -522,11 +523,6 @@ button.accordion.status-open::after {
     transition-duration: .5s;
 }
 
-.login-head {
-    text-align: center;
-    margin: 1% 1%;
-}
-
 #home::before {
     color: #333;
     font-family: "fontawesome";
@@ -545,6 +541,14 @@ button.accordion.status-open::after {
     content: "\f019";
 }
 
+#profile::before {
+    color: #333;
+    font-family: "fontawesome";
+    content: "\f2bd";
+}
+
+
+
 #log-in {
     display: inline-block;
     color: #fff;
@@ -557,7 +561,7 @@ button.accordion.status-open::after {
 #log-in::before {
     color: #333;
     font-family: "fontawesome";
-    content: "\f007";
+    content: "\f2f6";
 }
 
 #log-in span {

@@ -12,6 +12,5 @@ urlpatterns = [
     path('post-vote/<int:vote>/<int:pk>/', views.post_vote, name="post_vote"),
     path('comments/<int:pk>/', views.make_comment, name='make_comment'),
     path('comment-vote/<int:vote>/<int:pk>/', views.comment_vote, name="comment_vote"),
-    path('log-in/', views.see_log_in, name="see_log_in")
-    
+    path('log-in/', views.see_log_in, name="see_log_in")   
 ]

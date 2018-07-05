@@ -30,6 +30,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, verbose_name='email address')
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    bio = models.CharField(max_length=240, blank=True, null=True)
+    profile_pic = models.ImageField(blank=True, null=True, upload_to='images/profile/%Y/%m/%D/')
     objects = MyUserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS= ['email']

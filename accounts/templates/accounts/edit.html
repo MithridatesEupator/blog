@@ -1,0 +1,13 @@
+{% block content %}
+{% if current_user.is_authenticated %}
+    <form  enctype="multipart/form-data" action="{% url 'accounts:submit_changes' slug=current_user %}" method="post" class="form-main">      
+            {% csrf_token %}
+            {{ edit_form.as_p }}
+            <input type="submit" class="button" value="Edit"/> 
+        </form>
+{% else %}
+    <p>
+        you lack the proper credentials
+    </p>
+{% endif %}
+{% endblock %}

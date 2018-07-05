@@ -1,0 +1,27 @@
+{% load static %}
+<link href="{% static 'accounts/style.css' %}" rel="stylesheet" type="text/css" />
+<body>
+    
+    <div class="post">
+        {% block content %}
+        <p>
+            {{ profile_user.username }}
+        </p>
+        {% if profile_user.post_image %}
+            <img src="{{ profile_user.profile_pic.url }}" class="img-size">
+        {% endif %}
+        {% if profile_user.bio %}
+        <p>
+            {{ profile_user.bio }}
+        </p>
+        {% endif %}
+        {% endblock %}
+        {% if current_user.is_authenticated %}
+        <form  enctype="multipart/form-data" action="{% url 'accounts:edit_profile' slug=profile_user %}" method="post" class="form-main">      
+            {% csrf_token %}
+            {{ edit_form.as_p }}
+            <input type="submit" class="button" value="Edit"/> 
+        </form>
+        {% endif %}
+    </div>
+</body>
