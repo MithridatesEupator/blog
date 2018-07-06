@@ -54,12 +54,13 @@ def submit_changes(request, slug):
         print(edit_form.errors)
         if edit_form.is_valid():
             user_obj = get_object_or_404(MyUser, username=slug)
-            if edit_form.cleaned_data['username'] is not None:
+            if edit_form.cleaned_data['username'] is not None and edit_form.cleaned_data['username'] is not "":
                 user_obj.username = edit_form.cleaned_data['username']
-            if edit_form.cleaned_data['email'] is not None:
+            if edit_form.cleaned_data['email'] is not None and edit_form.cleaned_data['email'] is not "":
                 user_obj.email = edit_form.cleaned_data['email']
             print(edit_form.cleaned_data['bio'])
-            if edit_form.cleaned_data['bio'] is not None:
+            if edit_form.cleaned_data['bio'] is not None and edit_form.cleaned_data['bio'] is not "":
+                print("this worked")
                 user_obj.bio = edit_form.cleaned_data['bio']
             if edit_form.cleaned_data['profile_pic'] is not None:
                 user_obj.profile_pic = edit_form.cleaned_data['profile_pic']

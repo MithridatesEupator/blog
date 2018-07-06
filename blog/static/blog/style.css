@@ -278,10 +278,11 @@ textarea {
 
 .navbar span:hover {
     border-bottom: 4px solid #333;
-    transition-duration: .4s;
+    transition-duration: .6s;
 }
 
 .navbar span:active {
+    background-color: #333;
     color: #f1f1f1;
 }
 
@@ -292,7 +293,7 @@ textarea {
     width: 100%;
     z-index: 800;
     transition-duration: .6s;
-    border-bottom: 1px #
+    
 }
 
 .commentBox {
@@ -522,6 +523,7 @@ button.accordion.status-open::after {
     background-color: #b5ebff;
     transition-duration: .5s;
 }
+
 
 #home::before {
     color: #333;

@@ -4,24 +4,37 @@
     
     <div class="post">
         {% block content %}
-        <p>
-            {{ profile_user.username }}
-        </p>
-        {% if profile_user.post_image %}
-            <img src="{{ profile_user.profile_pic.url }}" class="img-size">
+        {% if profile_user.profile_pic %}
+        <div class="box-profile">
+            <img src="{{ profile_user.profile_pic.url }}" class="profile-size">
+        </div>
         {% endif %}
+        <div class="box-profile" >    
+        <p9>
+            {{ profile_user.username }}
+        </p9>
+        </div>
+        <div class="box-edit" >    
+            {% if current_user.is_authenticated and current_user == profile_user %}
+            <form  enctype="multipart/form-data" action="{% url 'accounts:edit_profile' slug=profile_user %}" method="post" class="form-profile">  
+                {% csrf_token %}
+                {{ edit_form.as_p }}
+                <input type="submit" class="button" value="Edit"/> 
+            </form>
+        {% endif %}
+        </div>
+        <div class="line">
+        </div>
+        <br>
         {% if profile_user.bio %}
         <p>
             {{ profile_user.bio }}
         </p>
+        {% else %}
         {% endif %}
+        <p>
+            This user has no bio
+        </p>
         {% endblock %}
-        {% if current_user.is_authenticated %}
-        <form  enctype="multipart/form-data" action="{% url 'accounts:edit_profile' slug=profile_user %}" method="post" class="form-main">      
-            {% csrf_token %}
-            {{ edit_form.as_p }}
-            <input type="submit" class="button" value="Edit"/> 
-        </form>
-        {% endif %}
     </div>
 </body>
