@@ -30,9 +30,10 @@ def see_post(request, slug):
     form_comment = make_comment_form()
     form_delete_post = delete_post_form()
     form_delete_comment = delete_comment_form()
+    current_user = request.user
     context = {
         "individual_post" : individual_post, "comment_list" : comment_list, "form_post" : form_post, "form_comment" : form_comment,
-        "form_delete_post" : form_delete_post, "form_delete_comment" : form_delete_comment
+        "form_delete_post" : form_delete_post, "form_delete_comment" : form_delete_comment, "current_user" : current_user
     }
     return render(request, 'blog/individual_post.html', context)
 
@@ -98,7 +99,7 @@ def post_vote(request, vote, pk):
     post.post_likes += 1
     post.save()
     slug_pass= post.post_url
-    return HttpResponseRedirect(reverse('see_post', kwargs={'slug': slug_pass}))
+    return HttpResponseRedirect(reverse('blog:see_post', kwargs={'slug': slug_pass}))
 
 def see_log_in(request):
     form_login = log_in_form()

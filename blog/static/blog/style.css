@@ -1,15 +1,21 @@
 body {
     margin: 0;
-    position: relative;
+    position: absolute;
     background-color: #a6c1d2;
+    height: 100%;
+    animation: blur-fade-in s;
 }
 
 .topImg {
     position: relative;
     background-color: #d1d1d1;
     height: 60%;
-    z-index: -100;
+    z-index: 400;
     text-align: center;
+}
+
+.body-class {
+    padding: 2%;
 }
 
 .container {
@@ -19,21 +25,19 @@ body {
     z-index: 900;
     position: relative;
     overflow: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .side-left {
     display: inline-block;
     position: relative;
-    margin: 7% 0;
-    margin-right: 2%;
     float: left;
-    padding: 1% 2%;
     width: 22%;
     background-color: #f8f8f8;
     height: 100%;
     border-radius: 4px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.1);
-    transform: translateX(5%);
 }
 
 .side-right {
@@ -165,8 +169,8 @@ h1 {
 .post {
     background-color: #f8f8f8;
     border-radius: 4px;
-    margin: 2% 2%;
-    padding: 0% 0% 1% 0%;
+    padding-bottom: 1%;
+    margin-bottom: 2%;
     box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -190,10 +194,7 @@ h1 {
     background-color: #5a6274;
 }
 
-.postContainer {
-    display: inline-block;
-    margin: 4% 0%;
-}
+
 
 .bottomBar {
     text-align: center;
@@ -372,7 +373,7 @@ button.accordion.status-open::after {
 }
 
 .hidden {
-    display: none;
+    
     z-index: 100;
     text-align: center;
 }
@@ -386,8 +387,6 @@ button.accordion.status-open::after {
     position: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    display: none;
-    animation: blur-fade-in 4s;
 }
 
 .idReg {
@@ -481,7 +480,6 @@ button.accordion.status-open::after {
 }
 
 .highlight {
-    margin: 6% 0;
     font-family: "Roboto", sans-serif;
     color: #333;
     margin: 2% 2%;
@@ -519,11 +517,31 @@ button.accordion.status-open::after {
     color: #333;
 }
 
+.up-vote-button-no {
+    display: inline-block;
+    color: black;
+    padding: 5px 5px;
+    background-color: #eef9fd;
+    border: 2px solid #b9c3cb;
+    border-radius: 3px;
+    margin: .7%;
+    text-decoration: none;
+}
+
+.up-vote-button-no:after {
+    font-family: "fontawesome";
+    content: "\f164";
+    color: #333;
+}
+
 .up-vote-button:hover {
     background-color: #b5ebff;
     transition-duration: .5s;
 }
 
+.container-post {
+    padding: 2%;
+}
 
 #home::before {
     color: #333;
@@ -549,12 +567,9 @@ button.accordion.status-open::after {
     content: "\f2bd";
 }
 
-
-
 #log-in {
     display: inline-block;
     color: #fff;
-    
     transition: all 0.5s;
     cursor: pointer;
     margin: 0;
@@ -563,9 +578,9 @@ button.accordion.status-open::after {
 #log-in::before {
     color: #333;
     font-family: "fontawesome";
-    content: "\f2f6";
+    content: "\f007";
 }
-
+/*
 #log-in span {
     cursor: pointer;
     display: inline-block;
@@ -591,13 +606,14 @@ button.accordion.status-open::after {
     opacity: 1;
     right: -10%;
 }
+*/
 
 @-webkit-keyframes blur-fade-in {
-    from {filter: blur(4px);}
+    from {filter: blur(6px);}
     to {filter: blur(0px);}
 }
 
 @keyframes blur-fade-in {
-    from {filter: blur(4px);}
+    from {filter: blur(6px);}
     to {filter: blur(0px);}
 }

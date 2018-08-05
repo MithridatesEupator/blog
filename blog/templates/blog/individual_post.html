@@ -2,16 +2,19 @@
 
 {% block content %}
 <body>
+    <div class="container-post">
     <div class="post">
         <div class="post-head-post"> 
             <p2 class="individual"> 
                 {{ individual_post.title }} published by {{ individual_post.poster.username }}
             </p2> 
+            {% if current_user.is_authenticated and current_user.is_staff %}
             <form  enctype="multipart/form-data" action="{% url 'blog:delete_post' slug=individual_post.post_url %}" method="post" class="form-post">        
                 {% csrf_token %}
                 {{ form_delete_post.as_p }}
                 <input type="submit" class="delete-button" value="Remove"/> 
-            </form> 
+            </form>
+            {% endif %}
         </div>
         <p> 
         Published on {{ individual_post.published_date.date }}
@@ -24,8 +27,13 @@
         </p>
         <div class="like-box">
             {{ individual_post.post_likes }}
+            {% if current_user.is_authenticated %}
             <a href="{% url 'blog:post_vote' vote=1 pk=individual_post.id %}" class="up-vote-button">
             </a>
+            {% else %}
+            <div class="up-vote-button-no">
+            </div>
+            {% endif %}
         </div>
         
         <div class="LINE"></div>
@@ -34,9 +42,11 @@
             {% if comment.parent_id == individual_post.id and not comment.comment_delete_status %}
                 <div class="comment-box">
                     <p class="comment-p">
-                        {{ comment.comment_text }} 
+                        {{ comment.comment_text }}
+                        {% if current_user.is_authenticated and current_user == comment.commenter %}
                         <a href="{% url 'blog:delete_comment' pk=comment.id %}" class="delete-button-comment" id="delete_comment"> 
                         </a>
+                        {% endif %}
                     </p>
                     <p>
                     - {{ comment.commenter.username }}
@@ -50,21 +60,24 @@
                 <br>
             {% endif %}
         {% endfor %}
+        {% if current_user.is_authenticated %}
         <div class="commentBox">
             <button class="accordion interior"> 
                     Make a Post
             </button>
             <div class="accordionContent">
-                <form  enctype="multipart/form-data" action="{% url 'blog:make_comment' individual_post.id %}" method="post" class="form-main">    
+                <form  enctype="multipart/form-data" action="{% url 'blog:make_comment' individual_post.id %}" method="post" class="form-main">
                     {% csrf_token %}
                     {{ form_comment.as_p }}
                     <input type="submit" class="button"/> 
                 </form>
             </div>
         </div>
+        {% endif %}
     </div>
     <br>
     <br>
     {% include 'blog/script.html' %}
+        </div>
 </body>
 {% endblock %}
