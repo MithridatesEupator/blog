@@ -5,11 +5,16 @@
     <div class="post">
         {% block content %}
         {% if profile_user.profile_pic %}
+        <br>
         <div class="box-profile">
             <img src="{{ profile_user.profile_pic.url }}" class="profile-size">
         </div>
+        {% else %}
+        <div class="box-profile">
+            <img src="{% static 'accounts/profile.png' %}" class="profile-size">
+        </div>
         {% endif %}
-        <div class="box-profile" >    
+        <div class="box-profile text-center" >    
         <p9>
             {{ profile_user.username }}
         </p9>
@@ -31,10 +36,11 @@
             {{ profile_user.bio }}
         </p>
         {% else %}
-        {% endif %}
         <p>
             This user has no bio
         </p>
+        {% endif %}
         {% endblock %}
+        <br>
     </div>
 </body>

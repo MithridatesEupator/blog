@@ -4,7 +4,7 @@ from .forms import *
 from .models import *
 from blog import views
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def user_login(request, *args, **kwargs):
     form = UserLoginForm(request.POST or None)
@@ -26,7 +26,7 @@ def user_register(request, *args, **kwargs):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse("user_login"))
+    return HttpResponseRedirect(reverse("accounts:login"))
 
 def see_account(request, slug):
     user_obj = get_object_or_404(MyUser, username=slug)

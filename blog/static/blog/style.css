@@ -52,8 +52,14 @@ body {
     transform: translateX(-50%);
 }
 
+.individual {
+    overflow-x: hidden;
+    max-width: 60vw;
+}
+
 p {
     font-family: "Roboto", sans-serif;
+    font-size: calc(90% + .2vw);
     color: #333;
     margin: 2% 2%;
     z-index: 100;
@@ -192,9 +198,8 @@ h1 {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     background-color: #5a6274;
+    
 }
-
-
 
 .bottomBar {
     text-align: center;
@@ -404,6 +409,7 @@ button.accordion.status-open::after {
     border: 2px solid #4788c7;
     border-radius: 4px;
     outline: 0;
+    vertical-align: middle;
 }
 
 .delete-button:hover {
@@ -481,11 +487,13 @@ button.accordion.status-open::after {
 
 .highlight {
     font-family: "Roboto", sans-serif;
+    font-size: calc(90% + .2vw);
     color: #333;
     margin: 2% 2%;
     z-index: 100;
     text-decoration: none;
     display: block;
+    overflow-x: hidden;
 }
 
 .highlight::before {

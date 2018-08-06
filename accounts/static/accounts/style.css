@@ -51,8 +51,9 @@ body {
 p {
     font-family: "Roboto", sans-serif;
     color: #333;
+    font-size: calc(90% + .2vw);
     z-index: 100;
-    margin: 0;
+    margin: 1%;
     padding: 0;
 }
 
@@ -180,11 +181,18 @@ p9 {
     height: 50px;
 }
 
+.text-center {
+    position: relative;
+    margin-left: 1%;
+    transform: translateY(-34%); 
+}
+
 .box-edit {
     height: 50px;
     display: inline-block;
     float: right;
     white-space: nowrap;
+    margin: 
 }
 
 .post {
@@ -259,6 +267,12 @@ img {
 
 .form-profile {
     font-family: "roboto", sans-serif;
+    margin: 2%;
+    
+}
+
+.form-main {
+    
 }
 
 textarea {
@@ -611,6 +625,10 @@ button.accordion.status-open::after {
 #log-in:hover span::after {
     opacity: 1;
     right: -10%;
+}
+
+.edit-container {
+    margin: 2%;
 }
 
 @-webkit-keyframes blur-fade-in {
